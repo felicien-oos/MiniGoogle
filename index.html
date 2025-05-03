@@ -16,7 +16,9 @@
     .logo {
       font-size: 50px;
       font-weight: bold;
-      color: #4285F4;
+      color: #4285F4; /* Bleu pour le logo */
+      text-transform: uppercase;
+      letter-spacing: 3px;
     }
 
     form {
@@ -70,7 +72,7 @@
 </head>
 <body>
 
-  <!-- Nouveau logo MiniGoogle -->
+  <!-- Logo MiniGoogle -->
   <div class="logo">
     MiniGoogle
   </div>
@@ -103,13 +105,4 @@
   <script>
     function search(event) {
       event.preventDefault();
-      const query = document.getElementById("query").value;
-      if (query.trim() !== "") {
-        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-      }
-    }
-  </script>
-
-</body>
-</html>
-
+      const query = document.getElementById
