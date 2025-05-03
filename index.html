@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>MiniGoogle</title>
-  <link rel="icon" href="https://www.google.com/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/5/5e/Google_2015_logo.svg" type="image/x-icon">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,6 +12,7 @@
       margin-top: 80px;
     }
 
+    /* Logo MiniGoogle personnalisé */
     .logo {
       font-size: 50px;
       font-weight: bold;
@@ -59,6 +60,14 @@
     .footer-links a {
       color: #1a0dab;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a img {
+      width: 20px;
+      height: 20px;
     }
 
     .footer-links a:hover {
@@ -68,22 +77,37 @@
 </head>
 <body>
 
+  <!-- Nouveau logo MiniGoogle personnalisé -->
   <div class="logo">
     <span>M</span><span>i</span><span>n</span><span>i</span><span>G</span><span>o</span>
   </div>
 
+  <!-- Formulaire de recherche -->
   <form onsubmit="search(event)">
     <input type="text" id="query" placeholder="Recherche sur Google...">
     <button type="submit">🔍</button>
   </form>
 
+  <!-- Liens vers les services avec leurs icônes -->
   <div class="footer-links">
-    <a href="https://www.youtube.com" target="_blank">YouTube</a>
-    <a href="https://mail.google.com" target="_blank">Mail</a>
-    <a href="https://express.adobe.com" target="_blank">Adobe Express</a>
-    <a href="https://www.instagram.com" target="_blank">Instagram</a>
-    <a href="https://www.roblox.com" target="_blank">Roblox</a>
-    <a href="https://brawlstars.supercell.com/fr/" target="_blank">Brawl Stars</a>
+    <a href="https://www.youtube.com" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube"> YouTube
+    </a>
+    <a href="https://mail.google.com" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Google_Mail_logo_%282013-2018%29.png" alt="Mail"> Mail
+    </a>
+    <a href="https://express.adobe.com" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Adobe_Express_Logo.svg" alt="Adobe Express"> Adobe Express
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"> Instagram
+    </a>
+    <a href="https://www.roblox.com" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Roblox_logo_2017.png" alt="Roblox"> Roblox
+    </a>
+    <a href="https://brawlstars.supercell.com/fr/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Brawl_Stars_Logo.png" alt="Brawl Stars"> Brawl Stars
+    </a>
   </div>
 
   <script>
