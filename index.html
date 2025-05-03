@@ -44,6 +44,30 @@
       cursor: pointer;
     }
 
+    /* Liens en bas avec icônes sous les noms */
+    .footer-links {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 16px;
+    }
+
+    .footer-links a {
+      color: #1a0dab;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .footer-links img {
+      width: 30px;
+      height: 30px;
+      margin-top: 8px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -58,6 +82,25 @@
     <input type="text" id="query" placeholder="Recherche sur Google...">
     <button type="submit">🔍</button>
   </form>
+
+  <!-- Liens vers les services avec icônes sous les noms -->
+  <div class="footer-links">
+    <a href="https://www.youtube.com" target="_blank">
+      YouTube
+      <br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
+    </a>
+    <a href="https://www.facebook.com" target="_blank">
+      Facebook
+      <br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+      Instagram
+      <br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+  </div>
 
   <script>
     function search(event) {
