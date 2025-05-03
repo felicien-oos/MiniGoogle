@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>MiniGoogle</title>
+  <link rel="icon" href="https://www.google.com/favicon.ico" type="image/x-icon">
   <style>
     body {
       font-family: Arial, sans-serif;
       background: white;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 80px;
     }
 
     .logo {
@@ -45,6 +46,24 @@
       border-radius: 24px;
       cursor: pointer;
     }
+
+    .footer-links {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      font-size: 16px;
+    }
+
+    .footer-links a {
+      color: #1a0dab;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -58,7 +77,15 @@
     <button type="submit">🔍</button>
   </form>
 
-  <!-- Ce moteur redirige vers une recherche Google réelle -->
+  <div class="footer-links">
+    <a href="https://www.youtube.com" target="_blank">YouTube</a>
+    <a href="https://mail.google.com" target="_blank">Mail</a>
+    <a href="https://express.adobe.com" target="_blank">Adobe Express</a>
+    <a href="https://www.instagram.com" target="_blank">Instagram</a>
+    <a href="https://www.roblox.com" target="_blank">Roblox</a>
+    <a href="https://brawlstars.supercell.com/fr/" target="_blank">Brawl Stars</a>
+  </div>
+
   <script>
     function search(event) {
       event.preventDefault();
@@ -71,4 +98,3 @@
 
 </body>
 </html>
-
