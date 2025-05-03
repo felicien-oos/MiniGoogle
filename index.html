@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>MiniGoogle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: white;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .logo {
+      font-size: 50px;
+      font-weight: bold;
+    }
+
+    .logo span:nth-child(1) { color: #4285F4; }
+    .logo span:nth-child(2) { color: #EA4335; }
+    .logo span:nth-child(3) { color: #FBBC05; }
+    .logo span:nth-child(4) { color: #4285F4; }
+    .logo span:nth-child(5) { color: #34A853; }
+    .logo span:nth-child(6) { color: #EA4335; }
+
+    form {
+      margin-top: 30px;
+    }
+
+    input[type="text"] {
+      width: 400px;
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 24px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 18px;
+      margin-left: 10px;
+      border: none;
+      background-color: #4285F4;
+      color: white;
+      border-radius: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <span>M</span><span>i</span><span>n</span><span>i</span><span>G</span><span>o</span>
+  </div>
+
+  <form onsubmit="search(event)">
+    <input type="text" id="query" placeholder="Recherche sur Google...">
+    <button type="submit">🔍</button>
+  </form>
+
+  <!-- Ce moteur redirige vers une recherche Google réelle -->
+  <script>
+    function search(event) {
+      event.preventDefault();
+      const query = document.getElementById("query").value;
+      if (query.trim() !== "") {
+        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+      }
+    }
+  </script>
+
+</body>
+</html>
+
