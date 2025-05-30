@@ -1,171 +1,250 @@
-<!DOCTYPE html>
+import random
+
+# Génère un fichier HTML quiz futuriste avec 10 000 questions (exemple simplifié)
+
+N_QUESTIONS = 10000
+QUESTIONS_PER_CATEGORY = N_QUESTIONS // 10
+
+categories = [
+    "Science",
+    "Mathématiques",
+    "Orthographe",
+    "Lecture",
+    "Français",
+    "Anglais",
+    "Histoire",
+    "Géographie",
+    "Technologie",
+    "Culture Générale"
+]
+
+def generate_question(i):
+    # Question factice avec difficulté aléatoire
+    is_hard = (i % 5 == 0)
+    logo = "💻" if is_hard else "🧠"
+    question_text = f"Question {i+1}: Est-ce que ceci est une affirmation correcte dans la catégorie ?"
+    # Réponse aléatoire vraie ou fausse
+    answer = random.choice(["vrai", "faux"])
+    return question_text, answer, logo
+
+def generate_html():
+    with open("quiz_futuriste.html", "w", encoding="utf-8") as f:
+        f.write("""<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NeuroQuiz*</title>
+<title>Quiz Futuriste - Félicien Quiz</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-
-  /* Couleurs futuristes */
-  :root {
-    --color-bg: #0a0f2c;
-    --color-neon-blue: #00ffff;
-    --color-neon-pink: #ff00ff;
-    --color-neon-green: #00ff99;
-    --color-white: #eee;
-    --color-shadow: #0ff;
-  }
-
   body {
-    margin: 0; padding: 0;
-    background: var(--color-bg);
+    background: black;
+    color: #00FFAA;
     font-family: 'Orbitron', sans-serif;
-    color: var(--color-white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
+    margin: 0; padding: 0;
   }
-
-  header {
-    margin-top: 40px;
-    font-size: 2.5rem;
-    position: relative;
-    user-select: none;
-  }
-
-  header .star {
-    color: var(--color-neon-pink);
-    cursor: pointer;
-    font-size: 2.8rem;
-    margin-left: 10px;
-    vertical-align: middle;
-    filter: drop-shadow(0 0 6px var(--color-neon-pink));
-    transition: transform 0.3s ease;
-  }
-  header .star:hover {
-    transform: scale(1.3) rotate(15deg);
-  }
-
-  /* Logo SVG */
-  .logo {
-    margin-top: 20px;
-    width: 80px;
-    height: 80px;
-    filter: drop-shadow(0 0 6px var(--color-neon-blue));
-  }
-
-  main {
-    margin-top: 50px;
-    width: 90%;
-    max-width: 600px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 20px;
-  }
-
-  .category {
-    background: linear-gradient(135deg, var(--color-neon-blue), var(--color-neon-pink));
-    border-radius: 15px;
-    padding: 25px 15px;
-    cursor: pointer;
-    box-shadow: 0 0 10px var(--color-neon-pink);
-    user-select: none;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-    font-size: 1.3rem;
+  h1, h2 {
     text-align: center;
-    color: var(--color-white);
+    text-shadow: 0 0 10px #00ffcc;
+  }
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px;
+  }
+  .category {
+    background: #002211;
+    border: 2px solid #00FFAA;
+    border-radius: 10px;
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+    min-width: 140px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 0 8px #00FFAA;
   }
   .category:hover {
-    background: linear-gradient(135deg, var(--color-neon-green), var(--color-neon-pink));
-    box-shadow: 0 0 20px var(--color-neon-green);
+    background: #004433;
   }
-
-  /* Loader futuriste */
-  #loader {
+  .star-btn {
     position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    border: 5px solid var(--color-neon-pink);
-    border-top: 5px solid var(--color-neon-blue);
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
-    display: none;
-    z-index: 9999;
-  }
-
-  @keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-
-  /* Footer minimaliste */
-  footer {
-    margin: 40px 0 20px 0;
-    font-size: 0.8rem;
-    color: #444;
+    top: 15px;
+    right: 25px;
+    font-size: 28px;
+    color: #00FFAA;
+    cursor: pointer;
     user-select: none;
+  }
+  .loading {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 50px;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+  }
+  .question-container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #002211;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 15px #00ffaa;
+  }
+  .question-text {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  button {
+    background: #005533;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1em;
+    color: #00ffbb;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 8px #00ffbb;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #008844;
+  }
+  .result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  .score {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    background: #003322;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    box-shadow: 0 0 10px #00ffbb;
+  }
+  .answer-feedback {
+    margin-top: 12px;
+    font-weight: bold;
   }
 </style>
 </head>
 <body>
 
-<header>
-  Bienvenue sur NeuroQuiz<span class="star" title="Fonctionnalités payantes">★</span>
-</header>
+<div class="star-btn" title="Fonctionnalités payantes" onclick="showPaidFeatures()">★</div>
 
-<!-- Logo SVG simple -->
-<svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Logo NeuroQuiz">
-  <circle cx="32" cy="32" r="30" stroke="cyan" stroke-width="3" fill="none" />
-  <path d="M20 32c6-8 12 8 16 0" stroke="cyan" stroke-width="3" fill="none" />
-  <circle cx="20" cy="32" r="4" fill="cyan" />
-  <circle cx="44" cy="32" r="4" fill="cyan" />
-</svg>
+<h1>Bienvenue sur Félicien Quiz - Vrai ou Faux ?</h1>
+<h2>Choisis un parcours :</h2>
 
-<main>
-  <div class="category" data-cat="science">Science</div>
-  <div class="category" data-cat="mathematiques">Mathématiques</div>
-  <div class="category" data-cat="orthographe">Orthographe</div>
-  <div class="category" data-cat="francais">Français</div>
-  <div class="category" data-cat="anglais">Anglais</div>
-  <div class="category" data-cat="geographie">Géographie</div>
-  <div class="category" data-cat="histoire">Histoire</div>
-  <div class="category" data-cat="technologie">Technologie</div>
-  <div class="category" data-cat="programmation">Programmation</div>
-  <div class="category" data-cat="culturegenerale">Culture Générale</div>
-</main>
+<div class="category-list" id="category-list">
+""")
+        # Générer catégories cliquables
+        for i, cat in enumerate(categories):
+            f.write(f'<div class="category" onclick="startQuiz({i})">{cat}</div>\n')
+        
+        f.write("""
+</div>
 
-<div id="loader"></div>
+<div id="loading" class="loading" style="display:none;">Chargement futuriste...</div>
 
-<footer>
-  NeuroQuiz © 2025 - Par Félicien*
-</footer>
+<div id="quiz" style="display:none;">
+  <div class="question-container">
+    <div id="question-text" class="question-text"></div>
+    <div class="buttons">
+      <button onclick="answer(true)">Vrai</button>
+      <button onclick="answer(false)">Faux</button>
+    </div>
+    <div id="feedback" class="answer-feedback"></div>
+  </div>
+</div>
+
+<div id="result" class="result" style="display:none;"></div>
+
+<div id="score" class="score" title="Score">Score: 0</div>
 
 <script>
-  const star = document.querySelector('.star');
-  star.addEventListener('click', () => {
-    alert("Fonctionnalité payante : Organisateur de journée à 2€.\nClique ici pour acheter (prototype).");
-    // Ici on pourrait rediriger vers une page payante dédiée
-  });
+const N_QUESTIONS = """ + str(N_QUESTIONS) + """;
+const QUESTIONS_PER_CATEGORY = """ + str(QUESTIONS_PER_CATEGORY) + """;
 
-  const categories = document.querySelectorAll('.category');
-  const loader = document.getElementById('loader');
+const categories = """ + str(categories) + """;
 
-  categories.forEach(cat => {
-    cat.addEventListener('click', () => {
-      loader.style.display = 'block';
-      setTimeout(() => {
-        loader.style.display = 'none';
-        alert(`Chargement de la catégorie : ${cat.textContent}\n(Prototype - ici tu chargerais les questions)`);
-        // Ici on chargerait la page questions avec la catégorie choisie
-      }, 1500);
-    });
-  });
-</script>
+// Génère questions factices
+let questions = [];
+for(let i=0; i<N_QUESTIONS; i++) {
+  let hard = (i % 5 === 0);
+  let logo = hard ? "💻" : "🧠";
+  let qText = "Question " + (i+1) + ": Est-ce que ceci est une affirmation correcte dans la catégorie ?";
+  questions.push({text: qText, answer: Math.random() < 0.5, logo: logo});
+}
 
-</body>
-</html>
+let currentCategory = null;
+let currentIndex = 0;
+let score = 0;
+
+function startQuiz(catIndex) {
+  currentCategory = catIndex;
+  currentIndex = catIndex * QUESTIONS_PER_CATEGORY;
+  score = 0;
+  document.getElementById("category-list").style.display = "none";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("loading").style.display = "block";
+
+  setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+    showQuestion();
+  }, 1500);
+}
+
+function showQuestion() {
+  if(currentIndex >= (currentCategory+1)*QUESTIONS_PER_CATEGORY) {
+    showResults();
+    return;
+  }
+  let q = questions[currentIndex];
+  document.getElementById("question-text").innerHTML = q.logo + " " + q.text;
+  document.getElementById("feedback").innerHTML = "";
+}
+
+function answer(userAnswer) {
+  let q = questions[currentIndex];
+  if(userAnswer === q.answer) {
+    score++;
+    document.getElementById("feedback").textContent = "Bonne réponse ! ✔️";
+  } else {
+    document.getElementById("feedback").textContent = "Mauvaise réponse ❌";
+  }
+  currentIndex++;
+  document.getElementById("score").textContent = "Score: " + score;
+
+  setTimeout(showQuestion, 1000);
+}
+
+function showResults() {
+  document.getElementById("quiz").style.display = "none";
+  let total = QUESTIONS_PER_CATEGORY;
+  let percent = Math.round(score * 100 / total);
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").textContent = `Résultats : ${score} bonnes réponses sur ${total} (${percent}%)`;
+
+  // Déblocage fonctionnalités payantes après 1000 points (à ajuster si nécessaire)
+  if(score >= 1000) {
+    alert("Bravo ! Tu as débloqué les fonctionnalités payantes !");
+    paidFeaturesUnlocked = true;
+  }
+}
+
+let paidFeaturesUnlocked = false;
+
+function showPaidFeatures() {
+  if(!paidFeaturesUnlocked
+
